@@ -1,0 +1,122 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CategoriaAvgAggregate {
+  id: Float
+  count_tarefa: Float
+}
+
+type CategoriaCountAggregate {
+  id: Int!
+  count_tarefa: Int!
+  titulo_cat: Int!
+  _all: Int!
+}
+
+type CategoriaCount {
+  tarefas: Int!
+}
+
+type CategoriaMaxAggregate {
+  id: Int
+  count_tarefa: String
+  titulo_cat: String
+}
+
+type CategoriaMinAggregate {
+  id: Int
+  count_tarefa: String
+  titulo_cat: String
+}
+
+type CategoriaSumAggregate {
+  id: Int
+  count_tarefa: String
+}
+
+type Categoria {
+  id: ID!
+  count_tarefa: String
+  titulo_cat: String!
+  tarefas: [Tarefas!]
+  _count: CategoriaCount!
+}
+
+type TarefasAvgAggregate {
+  id: Float
+  categoriaId: Float
+}
+
+type TarefasCountAggregate {
+  id: Int!
+  tarefa: Int!
+  status: Int!
+  criado_em: Int!
+  editado_em: Int!
+  categoriaId: Int!
+  _all: Int!
+}
+
+type TarefasMaxAggregate {
+  id: Int
+  tarefa: String
+  status: Status
+  criado_em: DateTime
+  editado_em: DateTime
+  categoriaId: Int
+}
+
+enum Status {
+  CONCLUIDO
+  NAO_CONCLUIDO
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type TarefasMinAggregate {
+  id: Int
+  tarefa: String
+  status: Status
+  criado_em: DateTime
+  editado_em: DateTime
+  categoriaId: Int
+}
+
+type TarefasSumAggregate {
+  id: Int
+  categoriaId: Int
+}
+
+type Tarefas {
+  id: ID!
+  tarefa: String!
+  status: Status
+  criado_em: DateTime
+  editado_em: DateTime
+  categoriaId: Int
+  Categoria: Categoria
+}
+
+type Query {
+  getHello: String!
+  get_all_Cat: [Categoria!]!
+  one_Cat: Categoria!
+}
+
+type Mutation {
+  criar_Cat(categoria: CriarCategoria!): Categoria!
+  apagar_Cat(id: Float!): Categoria!
+  update_Cat(id: Float!, data: UpdateCategoria!): Categoria!
+}
+
+input CriarCategoria {
+  titulo_cat: String!
+}
+
+input UpdateCategoria {
+  titulo_cat: String!
+}

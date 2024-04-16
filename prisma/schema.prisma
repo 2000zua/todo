@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator nestgraphql {
+  provider                              = "node node_modules/prisma-nestjs-graphql"
+  output                                = "../src/@generated"
+  reExport                              = "Single"
+  relayStyle                            = "true"
+  noInputs                              = "true"
+  purgeOutput                           = "true"
+  requireSingleFieldsInWhereUniqueInput = "true"
+  emitSingle                            = "true"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Categoria {
+  id           Int       @id @default(autoincrement())
+  count_tarefa BigInt?
+  titulo_cat   String
+  tarefas      Tarefas[]
+}
+
+model Tarefas {
+  id          Int        @id @default(autoincrement())
+  tarefa      String
+  status      Status?    @default(NAO_CONCLUIDO)
+  criado_em   DateTime?  @default(now())
+  editado_em  DateTime?  @updatedAt
+  categoriaId Int?
+  Categoria   Categoria? @relation(fields: [categoriaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([categoriaId], map: "Tarefas_categoriaId_fkey")
+}
+
+enum Status {
+  CONCLUIDO
+  NAO_CONCLUIDO
+}

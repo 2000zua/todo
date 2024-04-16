@@ -1,0 +1,34 @@
+import { Field, InputType } from "@nestjs/graphql";
+import { Status } from "@prisma/client";
+
+
+@InputType()
+export class CriarTask {
+    @Field()
+    tarefa: string
+
+    @Field()
+    categoria_id: number
+
+    @Field()
+    criado_em: Date
+
+    @Field()
+    status?: Status
+}
+
+@InputType()
+export class UpdateTask{
+    @Field()
+    tarefa?: string
+
+    @Field()
+    categoria_id?: number
+
+    @Field()
+    editado_em?: Date
+
+    @Field()
+    status?: Status
+}
+

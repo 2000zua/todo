@@ -1,17 +1,21 @@
+
 import { Field, InputType } from "@nestjs/graphql";
 import { Status } from "@prisma/client";
 
 
-@InputType()
+@InputType({description: "Tarefas_Criar"})
 export class CriarTask {
     @Field()
-    tarefa: string
+    id?: number 
 
     @Field()
-    categoria_id: number
+    tarefa?: string
 
     @Field()
-    criado_em: Date
+    categoria_id?: number
+ 
+    @Field()
+    criado_em?: Date
 
     @Field()
     status?: Status
@@ -24,7 +28,7 @@ export class UpdateTask{
 
     @Field()
     categoria_id?: number
-
+   
     @Field()
     editado_em?: Date
 

@@ -59,11 +59,16 @@ export class CategoriaService {
     }
   }
 
-  async update(id: number, dados: UpdateCategoria){
+  async update(id: number, dados: UpdateCategoria):Promise<Categoria> {
     try {
       const data = await this.prisma.categoria.update({ where: {id},
         data: {
           titulo_cat:  dados.titulo_cat
+        },
+        select: {
+          tarefas:{
+            
+          }
         }
       });
     
@@ -79,9 +84,11 @@ export class CategoriaService {
     }
   }
 
-  async one_Cat(id: number){
+  
+  async one_Cat(id: number): Promise<Categoria>{
     try {
-      return this.prisma.categoria.findUnique({where: {id}});
+      return await this.prisma.categoria.findUnique(
+        {where: { id: id }, include: { tarefas: { } }});
     } catch (error) {
       throw new Error(`Erro ao pegar uma categoria: ${error}`);
     }

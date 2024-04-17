@@ -5,12 +5,12 @@ generator client {
 generator nestgraphql {
   provider                              = "node node_modules/prisma-nestjs-graphql"
   output                                = "../src/@generated"
-  reExport                              = "Single"
-  relayStyle                            = "true"
-  noInputs                              = "true"
   purgeOutput                           = "true"
   requireSingleFieldsInWhereUniqueInput = "true"
   emitSingle                            = "true"
+  relayStyle                            = "true"
+  reExport                              = "Single"
+  noInputs                              = "true"
 }
 
 datasource db {

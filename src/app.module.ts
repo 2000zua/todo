@@ -6,9 +6,11 @@ import { YogaDriver, YogaDriverConfig } from '@graphql-yoga/nestjs';
 import { PrismaService } from './prisma/prisma.service';
 import { join } from 'path';
 import { useDeferStream } from '@graphql-yoga/plugin-defer-stream';
-import { TaskModule } from './task/task.module';
 import { CategoriaModule } from './categoria/categoria.module';
 import { CategoriaService } from './categoria/categoria.service';
+import { TaskModule } from './task/task.module';
+import { TaskService } from './task/task.service';
+
 
 @Module({
   imports: [
@@ -28,6 +30,6 @@ import { CategoriaService } from './categoria/categoria.service';
     CategoriaModule,
   ],
   controllers: [],
-  providers: [AppService, CategoriaService],
+  providers: [AppService, CategoriaService, TaskService],
 })
 export class AppModule {}

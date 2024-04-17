@@ -48,12 +48,13 @@ export class CategoriaResolver {
     }
   }
 
+  
   @Query(() => Categoria, {name: 'one_Cat'})
   async one_Cat(
-    @Args('id', {type: () => {name: 'one_Cat'}}) id: number
-  ){
+    @Args('id', {type: () => Number}) id: number
+  ):  Promise<Categoria>{
     try {
-      
+      return await this.categoriaService.one_Cat(id);
     } catch (error) {
       throw new Error("Error ao 501")
     }

@@ -103,14 +103,35 @@ type Tarefas {
 
 type Query {
   getHello: String!
+  find_one_task(id: Float!): Tarefas!
+  find_all_task: [Tarefas!]!
   get_all_Cat: [Categoria!]!
-  one_Cat: Categoria!
+  one_Cat(id: Float!): Categoria!
 }
 
 type Mutation {
+  criar_task(dados: CriarTask!, id_categoria: Float!): Tarefas!
+  apagar_task(id: Float!): Tarefas!
+  update_task(id: Float!, dados: UpdateTask!): Tarefas!
   criar_Cat(categoria: CriarCategoria!): Categoria!
   apagar_Cat(id: Float!): Categoria!
   update_Cat(id: Float!, data: UpdateCategoria!): Categoria!
+}
+
+"""Tarefas_Criar"""
+input CriarTask {
+  id: Float!
+  tarefa: String!
+  categoria_id: Float!
+  criado_em: DateTime!
+  status: String!
+}
+
+input UpdateTask {
+  tarefa: String!
+  categoria_id: Float!
+  editado_em: DateTime!
+  status: String!
 }
 
 input CriarCategoria {
